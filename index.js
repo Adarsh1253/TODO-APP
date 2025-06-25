@@ -1,0 +1,26 @@
+const express = require('express');
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const taskRoutes = require("./routes/tasks.js");
+const authRoutes = require("./routes/auth.js");
+
+dotenv.config();
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+const PORT = process.env.PORT || 5000;
+
+app.use("/api/auth", authRoutes);
+app.use("/api/tasks",taskRoutes);
+app.get("/",(req,res)=>{
+    res.send('API is running...');
+});
+
+mongoose.connect(process.env.MONGO_URI,).then(() => {
+  console.log("MongoDB Connected");
+  app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+}).catch(err => {
+  console.error("MongoDB connection failed:", err.message);
+});
