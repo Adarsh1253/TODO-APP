@@ -1,6 +1,6 @@
-const express = require("express");
-const Task = require("../models/Tasks.js");
-const auth = require("../middleware/auth.js");
+import express from "express";
+import Task from "../models/Task.js";
+import auth from "../middleware/auth.js";
 
 const router = express.Router({mergeParams:true});
 
@@ -53,4 +53,4 @@ router.delete("/:id", async(req,res)=>{
     }
 });
 
-module.exports= router;
+export default router;
