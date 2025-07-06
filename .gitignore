@@ -21,3 +21,4 @@ build/
 
 # VSCode settings
 .vscode/
+package-lock.json
